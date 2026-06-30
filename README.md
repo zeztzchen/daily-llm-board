@@ -1,6 +1,8 @@
 # Daily LLM Board
 
-每天过一遍，记录 LLM 相关的新闻、博客、模型榜单和需要继续跟进的信息。
+A lightweight daily dashboard for tracking LLM news, papers, research updates, model releases, and follow-up notes.
+
+用于每日巡检 LLM 信息流：新闻、论文、研究博客、模型榜单与值得继续跟进的记录。
 
 ## 新闻
 
