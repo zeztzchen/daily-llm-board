@@ -13,7 +13,7 @@
   --mint-soft: #dff8f2;
   --orange: #ff6d1a;
   --teal: #1c7580;
-  --shadow: 0 24px 70px rgba(31, 57, 72, 0.14);
+  --shadow: 0 18px 44px rgba(31, 57, 72, 0.12);
 }
 
 * {
@@ -32,6 +32,14 @@ body {
 button,
 textarea {
   font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+.source-toggle:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(34, 183, 159, 0.22);
+  outline-offset: 3px;
 }
 
 a {
@@ -65,7 +73,7 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.46)),
     rgba(255, 255, 255, 0.64);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(20px);
+  contain: layout paint;
 }
 
 .summary::after {
@@ -220,9 +228,9 @@ h3 {
   padding: 22px;
   border: 1px solid rgba(255, 255, 255, 0.64);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 14px 44px rgba(31, 57, 72, 0.1);
-  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 28px rgba(31, 57, 72, 0.08);
+  contain: layout paint;
 }
 
 .columns {
@@ -234,9 +242,16 @@ h3 {
   padding: 18px;
   border: 1px solid rgba(255, 255, 255, 0.64);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.68);
-  box-shadow: 0 14px 44px rgba(31, 57, 72, 0.09);
-  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 10px 28px rgba(31, 57, 72, 0.07);
+  contain: layout paint;
+}
+
+@supports (content-visibility: auto) {
+  .source-group {
+    content-visibility: auto;
+    contain-intrinsic-size: 260px;
+  }
 }
 
 .group-title {
@@ -267,7 +282,7 @@ h3 {
 
 .source-item {
   display: grid;
-  grid-template-columns: 28px minmax(0, 1fr);
+  grid-template-columns: 28px minmax(0, 1fr) 36px;
   gap: 12px;
   align-items: center;
   min-height: 72px;
@@ -275,7 +290,7 @@ h3 {
   border: 1px solid rgba(28, 117, 128, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 8px 22px rgba(31, 57, 72, 0.06);
+  box-shadow: 0 5px 14px rgba(31, 57, 72, 0.045);
   cursor: pointer;
   transition:
     border-color 160ms ease,
@@ -293,6 +308,14 @@ h3 {
   position: absolute;
   opacity: 0;
   pointer-events: none;
+}
+
+.source-toggle {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  cursor: pointer;
 }
 
 .checkmark {
@@ -318,6 +341,11 @@ h3 {
 .source-item:has(input:checked) {
   border-color: rgba(34, 183, 159, 0.42);
   background: rgba(223, 248, 242, 0.64);
+}
+
+.source-item:has(input:focus-visible) {
+  border-color: rgba(34, 183, 159, 0.5);
+  box-shadow: 0 0 0 4px rgba(34, 183, 159, 0.1);
 }
 
 .source-item:has(input:checked) .checkmark {
@@ -350,6 +378,43 @@ h3 {
 
 .item-copy a:hover {
   color: var(--teal);
+}
+
+.open-link {
+  position: relative;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(28, 117, 128, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--teal);
+  flex: 0 0 auto;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.open-link:hover {
+  border-color: rgba(34, 183, 159, 0.42);
+  background: white;
+  transform: translateY(-1px);
+}
+
+.open-link::before {
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  content: "";
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.open-link::after {
+  display: none;
 }
 
 .notes {
@@ -415,6 +480,7 @@ h3 {
   }
 
   .source-item {
+    grid-template-columns: 28px minmax(0, 1fr) 36px;
     min-height: 76px;
     padding: 12px;
   }
