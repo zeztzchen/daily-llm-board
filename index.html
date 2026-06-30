@@ -7,39 +7,216 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page">
-      <header class="hero">
-        <p class="eyebrow">Daily LLM Board</p>
-        <h1>每天要看的 LLM 信息</h1>
-        <p class="intro">集中记录论文、模型更新、产品动态和今天需要跟进的主题。</p>
-      </header>
+    <main class="shell">
+      <section class="summary" aria-label="Daily summary">
+        <div>
+          <p class="kicker">Daily LLM Board</p>
+          <h1>每天过一遍</h1>
+          <p class="date" id="todayLabel"></p>
+        </div>
 
-      <section class="board" aria-label="Daily sections">
-        <article class="panel">
-          <h2>今日重点</h2>
-          <ul>
-            <li>添加今天最值得看的 3-5 条内容。</li>
-            <li>记录需要进一步研究的问题。</li>
-          </ul>
-        </article>
+        <div class="progress-block" aria-label="Reading progress">
+          <div class="progress-head">
+            <span id="progressText">0 / 8</span>
+            <button class="reset-button" id="resetButton" type="button">重置</button>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span id="progressFill"></span>
+          </div>
+        </div>
 
-        <article class="panel">
-          <h2>来源</h2>
-          <ul>
-            <li>模型发布与实验报告</li>
-            <li>论文与技术博客</li>
-            <li>产品更新与行业新闻</li>
-          </ul>
-        </article>
+        <div class="focus-strip">
+          <span>News</span>
+          <span>Research</span>
+          <span>Models</span>
+        </div>
+      </section>
 
-        <article class="panel">
-          <h2>待跟进</h2>
-          <ul>
-            <li>把值得长期观察的主题放在这里。</li>
-            <li>为后续自动化抓取预留入口。</li>
-          </ul>
-        </article>
+      <section class="workspace" aria-label="Daily reading board">
+        <div class="board-header">
+          <div>
+            <p class="kicker">今日巡检</p>
+            <h2>LLM 信息流</h2>
+          </div>
+          <a class="repo-link" href="https://github.com/zeztzchen/daily-llm-board">GitHub</a>
+        </div>
+
+        <div class="columns">
+          <section class="source-group" aria-labelledby="newsTitle">
+            <div class="group-title">
+              <h3 id="newsTitle">新闻</h3>
+              <span class="count" data-count-for="news">0/2</span>
+            </div>
+            <div class="item-list">
+              <label class="source-item">
+                <input type="checkbox" data-group="news" data-key="x-list" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>推特列表</strong>
+                  <a href="https://x.com/dibingfa/lists">x.com/dibingfa/lists</a>
+                </span>
+              </label>
+
+              <label class="source-item">
+                <input type="checkbox" data-group="news" data-key="aihot" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>AIHOT</strong>
+                  <a href="https://aihot.virxact.com/">aihot.virxact.com</a>
+                </span>
+              </label>
+            </div>
+          </section>
+
+          <section class="source-group" aria-labelledby="blogTitle">
+            <div class="group-title">
+              <h3 id="blogTitle">博客</h3>
+              <span class="count" data-count-for="blog">0/2</span>
+            </div>
+            <div class="item-list">
+              <label class="source-item">
+                <input type="checkbox" data-group="blog" data-key="anthropic" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>Anthropic Research</strong>
+                  <a href="https://www.anthropic.com/research">anthropic.com/research</a>
+                </span>
+              </label>
+
+              <label class="source-item">
+                <input type="checkbox" data-group="blog" data-key="openai" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>OpenAI Research</strong>
+                  <a href="https://openai.com/research/index/">openai.com/research</a>
+                </span>
+              </label>
+            </div>
+          </section>
+
+          <section class="source-group" aria-labelledby="modelTitle">
+            <div class="group-title">
+              <h3 id="modelTitle">模型</h3>
+              <span class="count" data-count-for="model">0/4</span>
+            </div>
+            <div class="item-list">
+              <label class="source-item">
+                <input type="checkbox" data-group="model" data-key="openrouter" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>OpenRouter</strong>
+                  <a href="https://openrouter.ai/models">openrouter.ai/models</a>
+                </span>
+              </label>
+
+              <label class="source-item">
+                <input type="checkbox" data-group="model" data-key="llm-stats" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>LLM Stats</strong>
+                  <a href="https://llm-stats.com/llm-updates">llm-stats.com/llm-updates</a>
+                </span>
+              </label>
+
+              <label class="source-item">
+                <input type="checkbox" data-group="model" data-key="arena" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>Arena WebDev</strong>
+                  <a href="https://arena.ai/leaderboard/code/webdev">arena.ai/leaderboard</a>
+                </span>
+              </label>
+
+              <label class="source-item">
+                <input type="checkbox" data-group="model" data-key="aa" />
+                <span class="checkmark"></span>
+                <span class="item-copy">
+                  <strong>Artificial Analysis</strong>
+                  <a href="https://artificialanalysis.ai/">artificialanalysis.ai</a>
+                </span>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <section class="notes" aria-labelledby="notesTitle">
+          <div>
+            <p class="kicker">Today</p>
+            <h2 id="notesTitle">今日记录</h2>
+          </div>
+          <textarea id="notesInput" placeholder="值得跟进的模型、论文、产品动态..."></textarea>
+        </section>
       </section>
     </main>
+
+    <script>
+      const storageKey = "daily-llm-board:v1";
+      const inputs = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+      const notesInput = document.querySelector("#notesInput");
+      const progressText = document.querySelector("#progressText");
+      const progressFill = document.querySelector("#progressFill");
+      const todayLabel = document.querySelector("#todayLabel");
+      const resetButton = document.querySelector("#resetButton");
+
+      const today = new Intl.DateTimeFormat("zh-CN", {
+        dateStyle: "full",
+      }).format(new Date());
+      todayLabel.textContent = today;
+
+      const readState = () => {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey)) || {};
+        } catch {
+          return {};
+        }
+      };
+
+      const writeState = (state) => {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      };
+
+      const updateProgress = () => {
+        const checked = inputs.filter((input) => input.checked).length;
+        const total = inputs.length;
+        progressText.textContent = `${checked} / ${total}`;
+        progressFill.style.width = `${Math.round((checked / total) * 100)}%`;
+
+        document.querySelectorAll("[data-count-for]").forEach((badge) => {
+          const group = badge.dataset.countFor;
+          const groupInputs = inputs.filter((input) => input.dataset.group === group);
+          const groupChecked = groupInputs.filter((input) => input.checked).length;
+          badge.textContent = `${groupChecked}/${groupInputs.length}`;
+        });
+      };
+
+      const state = readState();
+      inputs.forEach((input) => {
+        input.checked = Boolean(state[input.dataset.key]);
+        input.addEventListener("change", () => {
+          const nextState = readState();
+          nextState[input.dataset.key] = input.checked;
+          writeState(nextState);
+          updateProgress();
+        });
+      });
+
+      notesInput.value = state.notes || "";
+      notesInput.addEventListener("input", () => {
+        const nextState = readState();
+        nextState.notes = notesInput.value;
+        writeState(nextState);
+      });
+
+      resetButton.addEventListener("click", () => {
+        inputs.forEach((input) => {
+          input.checked = false;
+        });
+        notesInput.value = "";
+        writeState({});
+        updateProgress();
+      });
+
+      updateProgress();
+    </script>
   </body>
 </html>
