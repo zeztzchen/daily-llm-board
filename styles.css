@@ -2,7 +2,7 @@
   color-scheme: light;
   font-family: var(--font-sans);
   color: #18212f;
-  background: #eef6f2;
+  background: #edf4f8;
   --font-sans:
     "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
     "Source Han Sans SC", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
@@ -24,11 +24,11 @@
   --muted: #697386;
   --line: rgba(33, 48, 63, 0.12);
   --panel: rgba(255, 255, 255, 0.78);
-  --mint: #22b79f;
-  --mint-soft: #dff8f2;
+  --mint: #26abc7;
+  --mint-soft: #e2f4f9;
   --orange: #ff6d1a;
-  --teal: #1c7580;
-  --deep-teal: #155c64;
+  --teal: #176987;
+  --deep-teal: #0f4e66;
   --paper: rgba(255, 255, 255, 0.86);
   --shadow: 0 18px 44px rgba(31, 57, 72, 0.12);
 }
@@ -41,10 +41,10 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(120deg, rgba(34, 183, 159, 0.22), transparent 34%),
+    linear-gradient(120deg, rgba(38, 171, 199, 0.22), transparent 34%),
     linear-gradient(300deg, rgba(255, 109, 26, 0.12), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 40%),
-    #eef6f2;
+    #edf4f8;
 }
 
 button,
@@ -56,7 +56,7 @@ button:focus-visible,
 a:focus-visible,
 .source-toggle:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid rgba(34, 183, 159, 0.22);
+  outline: 3px solid rgba(38, 171, 199, 0.22);
   outline-offset: 3px;
 }
 
@@ -106,17 +106,17 @@ a {
   width: 154px;
   height: 154px;
   place-items: center;
-  border: 12px solid rgba(34, 183, 159, 0.13);
+  border: 12px solid rgba(38, 171, 199, 0.13);
   border-radius: 50%;
-  color: rgba(28, 117, 128, 0.13);
+  color: rgba(23, 105, 135, 0.13);
   content: "?";
   font-family: var(--font-display);
   font-size: 4.35rem;
   font-weight: 900;
   line-height: 1;
   box-shadow:
-    46px 46px 0 -34px rgba(34, 183, 159, 0.14),
-    58px 58px 0 -38px rgba(34, 183, 159, 0.1);
+    46px 46px 0 -34px rgba(38, 171, 199, 0.14),
+    58px 58px 0 -38px rgba(38, 171, 199, 0.1);
   transform: rotate(-8deg);
 }
 
@@ -125,7 +125,7 @@ a {
   right: 18px;
   bottom: 472px;
   z-index: 0;
-  color: rgba(28, 117, 128, 0.085);
+  color: rgba(23, 105, 135, 0.085);
   content: "WHAT\A WHY\A HOW";
   font-family: var(--font-display);
   font-size: 3.65rem;
@@ -141,7 +141,7 @@ a {
 }
 
 .summary.is-complete {
-  border-color: rgba(34, 183, 159, 0.36);
+  border-color: rgba(38, 171, 199, 0.36);
   box-shadow: 0 20px 52px rgba(22, 103, 104, 0.16);
 }
 
@@ -252,7 +252,7 @@ h3::before {
   margin: 28px 0 0;
   min-height: 108px;
   padding: 14px;
-  border: 1px solid rgba(28, 117, 128, 0.12);
+  border: 1px solid rgba(23, 105, 135, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.62);
 }
@@ -297,11 +297,11 @@ h3::before {
   gap: 12px;
   margin: 172px 0 34px;
   padding: 18px 18px 17px;
-  border: 1px solid rgba(28, 117, 128, 0.13);
+  border: 1px solid rgba(23, 105, 135, 0.13);
   border-radius: 12px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(243, 253, 250, 0.52)),
-    rgba(223, 248, 242, 0.38);
+    rgba(226, 244, 249, 0.38);
   box-shadow:
     0 18px 34px rgba(31, 57, 72, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
@@ -359,7 +359,7 @@ h3::before {
 
 .reset-button {
   min-height: 34px;
-  border-color: rgba(28, 117, 128, 0.14);
+  border-color: rgba(23, 105, 135, 0.14);
   border-radius: 999px;
   padding: 0 13px;
   background:
@@ -375,7 +375,7 @@ h3::before {
 
 .reset-button:hover,
 .repo-link:hover {
-  border-color: rgba(34, 183, 159, 0.44);
+  border-color: rgba(38, 171, 199, 0.44);
   background: white;
 }
 
@@ -384,7 +384,7 @@ h3::before {
   overflow: hidden;
   border-radius: 999px;
   background:
-    linear-gradient(90deg, rgba(28, 117, 128, 0.12), rgba(34, 183, 159, 0.1));
+    linear-gradient(90deg, rgba(23, 105, 135, 0.12), rgba(38, 171, 199, 0.1));
   box-shadow: inset 0 1px 2px rgba(31, 57, 72, 0.08);
 }
 
@@ -394,7 +394,7 @@ h3::before {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--mint), var(--orange));
-  box-shadow: 0 0 14px rgba(34, 183, 159, 0.24);
+  box-shadow: 0 0 14px rgba(38, 171, 199, 0.24);
   transition: width 180ms ease;
 }
 
@@ -411,7 +411,7 @@ h3::before {
 }
 
 .summary.is-complete .progress-track {
-  background: rgba(34, 183, 159, 0.16);
+  background: rgba(38, 171, 199, 0.16);
 }
 
 .summary.is-complete .progress-track span {
@@ -432,9 +432,9 @@ h3::before {
   align-items: center;
   gap: 7px;
   padding: 8px 10px;
-  border: 1px solid rgba(28, 117, 128, 0.12);
+  border: 1px solid rgba(23, 105, 135, 0.12);
   border-radius: 999px;
-  background: rgba(223, 248, 242, 0.8);
+  background: rgba(226, 244, 249, 0.8);
   color: #276871;
   font-family: var(--font-display);
   font-size: 0.78rem;
@@ -492,7 +492,7 @@ h3::before {
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: linear-gradient(90deg, rgba(34, 183, 159, 0.68), rgba(255, 109, 26, 0.42));
+  background: linear-gradient(90deg, rgba(38, 171, 199, 0.68), rgba(255, 109, 26, 0.42));
   content: "";
 }
 
@@ -526,7 +526,7 @@ h3::before {
   gap: 12px;
   margin-bottom: 14px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(34, 183, 159, 0.16);
+  border-bottom: 1px solid rgba(38, 171, 199, 0.16);
 }
 
 .count {
@@ -553,7 +553,7 @@ h3::before {
   align-items: center;
   min-height: 72px;
   padding: 14px;
-  border: 1px solid rgba(28, 117, 128, 0.12);
+  border: 1px solid rgba(23, 105, 135, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 5px 14px rgba(31, 57, 72, 0.045);
@@ -565,7 +565,7 @@ h3::before {
 }
 
 .source-item:hover {
-  border-color: rgba(34, 183, 159, 0.38);
+  border-color: rgba(38, 171, 199, 0.38);
   background: white;
   transform: translateY(-1px);
 }
@@ -589,7 +589,7 @@ h3::before {
   width: 24px;
   height: 24px;
   place-items: center;
-  border: 2px solid rgba(34, 183, 159, 0.28);
+  border: 2px solid rgba(38, 171, 199, 0.28);
   border-radius: 7px;
   background: rgba(255, 255, 255, 0.8);
 }
@@ -605,15 +605,15 @@ h3::before {
 }
 
 .source-item:has(input:checked) {
-  border-color: rgba(34, 183, 159, 0.42);
+  border-color: rgba(38, 171, 199, 0.42);
   background:
-    linear-gradient(90deg, rgba(34, 183, 159, 0.1), transparent 48%),
-    rgba(223, 248, 242, 0.68);
+    linear-gradient(90deg, rgba(38, 171, 199, 0.1), transparent 48%),
+    rgba(226, 244, 249, 0.68);
 }
 
 .source-item:has(input:focus-visible) {
-  border-color: rgba(34, 183, 159, 0.5);
-  box-shadow: 0 0 0 4px rgba(34, 183, 159, 0.1);
+  border-color: rgba(38, 171, 199, 0.5);
+  box-shadow: 0 0 0 4px rgba(38, 171, 199, 0.1);
 }
 
 .source-item:has(input:checked) .checkmark {
@@ -656,7 +656,7 @@ h3::before {
   height: 36px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(28, 117, 128, 0.12);
+  border: 1px solid rgba(23, 105, 135, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.68);
   color: var(--teal);
@@ -668,7 +668,7 @@ h3::before {
 }
 
 .open-link:hover {
-  border-color: rgba(34, 183, 159, 0.42);
+  border-color: rgba(38, 171, 199, 0.42);
   background: white;
   transform: translateY(-1px);
 }
@@ -706,7 +706,7 @@ h3::before {
 .week-range {
   margin: 2px 0 0;
   padding: 8px 13px;
-  border: 1px solid rgba(34, 183, 159, 0.18);
+  border: 1px solid rgba(38, 171, 199, 0.18);
   border-radius: 999px;
   background:
     linear-gradient(180deg, rgba(236, 251, 247, 0.96), rgba(255, 255, 255, 0.78));
@@ -725,7 +725,7 @@ h3::before {
   gap: 6px;
   overflow: hidden;
   padding: 6px;
-  border: 1px solid rgba(28, 117, 128, 0.08);
+  border: 1px solid rgba(23, 105, 135, 0.08);
   border-radius: 10px;
   background:
     linear-gradient(180deg, rgba(248, 253, 252, 0.88), rgba(255, 255, 255, 0.56)),
@@ -754,21 +754,21 @@ h3::before {
 }
 
 .day-tab:hover {
-  border-color: rgba(34, 183, 159, 0.18);
+  border-color: rgba(38, 171, 199, 0.18);
   background: rgba(255, 255, 255, 0.68);
   color: var(--teal);
   transform: translateY(-1px);
 }
 
 .day-tab.is-active {
-  border-color: rgba(34, 183, 159, 0.34);
+  border-color: rgba(38, 171, 199, 0.34);
   background:
     linear-gradient(180deg, rgba(236, 251, 247, 0.96), rgba(255, 255, 255, 0.84)),
     rgba(255, 255, 255, 0.86);
   color: var(--teal);
   box-shadow:
     0 6px 14px rgba(31, 57, 72, 0.06),
-    inset 0 -2px 0 rgba(34, 183, 159, 0.24);
+    inset 0 -2px 0 rgba(38, 171, 199, 0.24);
 }
 
 .day-tab.is-today::before,
@@ -800,7 +800,7 @@ h3::before {
 
 .note-editor {
   overflow: hidden;
-  border: 1px solid rgba(28, 117, 128, 0.14);
+  border: 1px solid rgba(23, 105, 135, 0.14);
   border-radius: 14px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 255, 254, 0.9)),
@@ -817,9 +817,9 @@ h3::before {
   justify-content: space-between;
   gap: 12px;
   padding: 12px 14px;
-  border-bottom: 1px solid rgba(28, 117, 128, 0.08);
+  border-bottom: 1px solid rgba(23, 105, 135, 0.08);
   background:
-    linear-gradient(90deg, rgba(223, 248, 242, 0.62), rgba(255, 255, 255, 0.72));
+    linear-gradient(90deg, rgba(226, 244, 249, 0.62), rgba(255, 255, 255, 0.72));
   color: var(--muted);
   font-size: 0.78rem;
 }
@@ -839,7 +839,7 @@ h3::before {
   border-radius: 999px;
   background: white;
   color: var(--teal);
-  box-shadow: inset 0 0 0 1px rgba(34, 183, 159, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(38, 171, 199, 0.14);
   font-family: var(--font-display);
   font-weight: 850;
 }
@@ -859,7 +859,7 @@ h3::before {
   height: 7px;
   border-radius: 999px;
   background: var(--mint);
-  box-shadow: 0 0 0 3px rgba(34, 183, 159, 0.12);
+  box-shadow: 0 0 0 3px rgba(38, 171, 199, 0.12);
   content: "";
 }
 
@@ -869,7 +869,7 @@ h3::before {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  border: 1px solid rgba(28, 117, 128, 0.12);
+  border: 1px solid rgba(23, 105, 135, 0.12);
   border-radius: 8px;
   padding: 0 10px;
   background: rgba(255, 255, 255, 0.76);
@@ -893,7 +893,7 @@ h3::before {
 }
 
 .export-button:hover {
-  border-color: rgba(34, 183, 159, 0.34);
+  border-color: rgba(38, 171, 199, 0.34);
   background: white;
   transform: translateY(-1px);
 }
@@ -919,14 +919,14 @@ h3::before {
 }
 
 .notes textarea:focus {
-  box-shadow: inset 0 0 0 2px rgba(34, 183, 159, 0.28);
+  box-shadow: inset 0 0 0 2px rgba(38, 171, 199, 0.28);
 }
 
 .note-editor:focus-within {
-  border-color: rgba(34, 183, 159, 0.46);
+  border-color: rgba(38, 171, 199, 0.46);
   box-shadow:
     0 14px 30px rgba(31, 57, 72, 0.06),
-    0 0 0 4px rgba(34, 183, 159, 0.1);
+    0 0 0 4px rgba(38, 171, 199, 0.1);
 }
 
 @media (max-width: 900px) {
