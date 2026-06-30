@@ -4,8 +4,13 @@
 
 ## 新闻
 
-- [ ] 推特列表：[https://x.com/dibingfa/lists](https://x.com/dibingfa/lists)
+- [ ] X List 1：[https://x.com/i/lists/2018885117041942711](https://x.com/i/lists/2018885117041942711)
+- [ ] X List 2：[https://x.com/i/lists/1597115448146898944](https://x.com/i/lists/1597115448146898944)
 - [ ] AIHOT：[https://aihot.virxact.com/](https://aihot.virxact.com/)
+
+## 论文
+
+- [ ] Hugging Face Trending Papers：[https://huggingface.co/papers/trending](https://huggingface.co/papers/trending)
 
 ## 博客
 
