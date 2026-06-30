@@ -1,38 +1,58 @@
 # Daily LLM Board
 
-A lightweight daily dashboard for tracking LLM news, papers, research updates, model releases, and follow-up notes.
+A lightweight daily dashboard for tracking LLM news, papers, research updates, model releases, and weekly notes.
 
-用于每日巡检 LLM 信息流：新闻、论文、研究博客、模型榜单与值得继续跟进的记录。
+Live site: [https://zeztzchen.github.io/daily-llm-board/](https://zeztzchen.github.io/daily-llm-board/)
 
-## 新闻
+## 功能介绍
 
-- [ ] X List 1：[https://x.com/i/lists/2018885117041942711](https://x.com/i/lists/2018885117041942711)
-- [ ] X List 2：[https://x.com/i/lists/1597115448146898944](https://x.com/i/lists/1597115448146898944)
-- [ ] AIHOT：[https://aihot.virxact.com/](https://aihot.virxact.com/)
+Daily LLM Board 是一个纯静态的每日 LLM 信息巡检面板，适合每天快速过一遍新闻、论文、研究博客和模型动态。
 
-## 论文
+- 每个信息源都可以勾选完成，并自动更新总进度和分组进度。
+- 每个条目右侧提供打开按钮，方便快速跳转原站。
+- 左侧展示日期、今日诗句、巡检进度和关注方向。
+- 本周记录支持按日期保存笔记，内容存储在当前浏览器的 `localStorage`。
+- 新的一周会自动开启新周并重置巡检状态。
+- 支持一键导出当前周 Markdown 笔记。
 
-- [ ] Hugging Face Trending Papers：[https://huggingface.co/papers/trending](https://huggingface.co/papers/trending)
+## 用到的链接
 
-## 博客
+### 新闻
 
-- [ ] Anthropic Research：[https://www.anthropic.com/research](https://www.anthropic.com/research)
-- [ ] OpenAI Research：[https://openai.com/research/index/](https://openai.com/research/index/)
+- [X List 1](https://x.com/i/lists/2018885117041942711)
+- [X List 2](https://x.com/i/lists/1597115448146898944)
+- [AIHOT](https://aihot.virxact.com/)
 
-## 模型
+### 论文
 
-- [ ] OpenRouter Models：[https://openrouter.ai/models](https://openrouter.ai/models)
-- [ ] LLM Stats：[https://llm-stats.com/llm-updates](https://llm-stats.com/llm-updates)
-- [ ] Arena WebDev Leaderboard：[https://arena.ai/leaderboard/code/webdev](https://arena.ai/leaderboard/code/webdev)
-- [ ] Artificial Analysis：[https://artificialanalysis.ai/](https://artificialanalysis.ai/)
+- [Hugging Face Trending Papers](https://huggingface.co/papers/trending)
 
-## 今日记录
+### 博客
 
-- 日期：
-- 已看：
-- 值得跟进：
-- 备注：
+- [Anthropic Research](https://www.anthropic.com/research)
+- [OpenAI Research](https://openai.com/research/index/)
+
+### 模型
+
+- [OpenRouter Models](https://openrouter.ai/models)
+- [LLM Stats](https://llm-stats.com/llm-updates)
+- [Arena WebDev Leaderboard](https://arena.ai/leaderboard/code/webdev)
+- [Artificial Analysis](https://artificialanalysis.ai/)
+
+### API
+
+- [今日诗词 API](https://v1.jinrishici.com/all.json)
 
 ## 本地预览
 
-直接用浏览器打开 `index.html`。
+直接用浏览器打开 `index.html`，或运行：
+
+```bash
+python3 -m http.server 8000
+```
+
+然后访问 `http://127.0.0.1:8000`。
+
+## 致谢
+
+信息源整理和页面思路参考：[微信文章](https://mp.weixin.qq.com/s/P-mwic1wiSvzwZiPKc077Q?scene=1&click_id=1337508649)。

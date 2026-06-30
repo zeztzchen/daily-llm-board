@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Daily LLM Board</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -21,8 +22,9 @@
         </div>
 
         <div class="progress-block" aria-label="Reading progress">
+          <p class="progress-kicker">今日进度</p>
           <div class="progress-head">
-            <span id="progressText">0 / 8</span>
+            <span id="progressText">0 / 10</span>
             <button class="reset-button" id="resetButton" type="button">重置</button>
           </div>
           <div class="progress-track" aria-hidden="true">
@@ -90,6 +92,7 @@
                 </span>
                 <a class="open-link" href="https://aihot.virxact.com/" target="_blank" rel="noreferrer" aria-label="打开 AIHOT" title="打开 AIHOT"></a>
               </div>
+
             </div>
           </section>
 
@@ -203,11 +206,24 @@
         </div>
 
         <section class="notes" aria-labelledby="notesTitle">
-          <div>
-            <p class="kicker">Today</p>
-            <h2 id="notesTitle">今日记录</h2>
+          <div class="notes-head">
+            <div>
+              <p class="kicker">This Week</p>
+              <h2 id="notesTitle">本周记录</h2>
+            </div>
+            <p class="week-range" id="weekRange"></p>
           </div>
-          <textarea id="notesInput" placeholder="值得跟进的模型、论文、产品动态..."></textarea>
+          <div class="note-editor">
+            <div class="note-editor-head">
+              <span id="activeDayLabel"></span>
+              <div class="note-actions">
+                <span class="autosave-label">自动保存</span>
+                <button class="export-button" id="exportMarkdownButton" type="button">导出 MD</button>
+              </div>
+            </div>
+            <textarea id="notesInput" placeholder="今天值得跟进的模型、论文、产品动态..."></textarea>
+          </div>
+          <div class="week-tabs" id="weekTabs" aria-label="选择记录日期"></div>
         </section>
       </section>
     </main>
@@ -217,6 +233,10 @@
       const poemStorageKey = "daily-llm-board:poem:v1";
       const inputs = Array.from(document.querySelectorAll('input[type="checkbox"]'));
       const notesInput = document.querySelector("#notesInput");
+      const weekTabs = document.querySelector("#weekTabs");
+      const weekRange = document.querySelector("#weekRange");
+      const activeDayLabel = document.querySelector("#activeDayLabel");
+      const exportMarkdownButton = document.querySelector("#exportMarkdownButton");
       const progressText = document.querySelector("#progressText");
       const progressFill = document.querySelector("#progressFill");
       const todayLabel = document.querySelector("#todayLabel");
@@ -226,9 +246,10 @@
       const poemContent = document.querySelector("#poemContent");
       const poemMeta = document.querySelector("#poemMeta");
 
+      const now = new Date();
       const today = new Intl.DateTimeFormat("zh-CN", {
         dateStyle: "full",
-      }).format(new Date());
+      }).format(now);
       todayLabel.textContent = today;
 
       const readState = () => {
@@ -243,11 +264,170 @@
         localStorage.setItem(storageKey, JSON.stringify(state));
       };
 
+      const ensureCurrentWeek = (state) => {
+        state.weeks = state.weeks || {};
+        if (!state.weeks[currentWeekKey]) {
+          state.weeks[currentWeekKey] = {
+            startDate: currentWeekKey,
+            notes: {},
+          };
+        }
+
+        if (state.activeWeek && state.activeWeek !== currentWeekKey) {
+          inputs.forEach((input) => {
+            delete state[input.dataset.key];
+          });
+        }
+        state.activeWeek = currentWeekKey;
+
+        if (state.notes && !state.weeks[currentWeekKey].notes[todayKey]) {
+          state.weeks[currentWeekKey].notes[todayKey] = state.notes;
+          delete state.notes;
+        }
+
+        return state.weeks[currentWeekKey];
+      };
+
+      const readPreparedState = () => {
+        const state = readState();
+        ensureCurrentWeek(state);
+        writeState(state);
+        return state;
+      };
+
       const getDateKey = (date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0");
         const day = String(date.getDate()).padStart(2, "0");
         return `${year}-${month}-${day}`;
+      };
+
+      const getWeekStart = (date) => {
+        const weekStart = new Date(date);
+        const day = weekStart.getDay() || 7;
+        weekStart.setDate(weekStart.getDate() - day + 1);
+        weekStart.setHours(0, 0, 0, 0);
+        return weekStart;
+      };
+
+      const addDays = (date, days) => {
+        const nextDate = new Date(date);
+        nextDate.setDate(nextDate.getDate() + days);
+        return nextDate;
+      };
+
+      const formatShortDate = (date) => {
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${month}/${day}`;
+      };
+
+      const weekStart = getWeekStart(now);
+      const currentWeekKey = getDateKey(weekStart);
+      const todayKey = getDateKey(now);
+      const weekDays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"].map(
+        (label, index) => {
+          const date = addDays(weekStart, index);
+          return {
+            label,
+            dateKey: getDateKey(date),
+            shortDate: formatShortDate(date),
+          };
+        },
+      );
+      let selectedDateKey = todayKey;
+
+      const getWeekNote = (state, dateKey) => {
+        const week = ensureCurrentWeek(state);
+        return week.notes[dateKey] || "";
+      };
+
+      const writeWeekNote = (dateKey, value) => {
+        const state = readState();
+        const week = ensureCurrentWeek(state);
+        if (value.trim()) {
+          week.notes[dateKey] = value;
+        } else {
+          delete week.notes[dateKey];
+        }
+        writeState(state);
+      };
+
+      const renderWeekMeta = (state) => {
+        const week = ensureCurrentWeek(state);
+        const notedDays = weekDays.filter((day) => week.notes[day.dateKey]).length;
+        weekRange.textContent = `${formatShortDate(weekStart)} - ${formatShortDate(addDays(weekStart, 6))} · ${notedDays}/7`;
+      };
+
+      const renderWeekTabs = () => {
+        const state = readState();
+        const week = ensureCurrentWeek(state);
+        weekTabs.innerHTML = "";
+        renderWeekMeta(state);
+
+        weekDays.forEach((day) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "day-tab";
+          button.dataset.dateKey = day.dateKey;
+          button.setAttribute("aria-pressed", String(day.dateKey === selectedDateKey));
+          if (day.dateKey === selectedDateKey) button.classList.add("is-active");
+          if (day.dateKey === todayKey) button.classList.add("is-today");
+          if (week.notes[day.dateKey]) button.classList.add("has-note");
+
+          const dayDate = document.createElement("span");
+          dayDate.className = "day-date";
+          dayDate.textContent = day.shortDate;
+
+          button.append(dayDate);
+          button.addEventListener("click", () => {
+            selectedDateKey = day.dateKey;
+            renderWeekNotes();
+          });
+          weekTabs.append(button);
+        });
+      };
+
+      const renderWeekNotes = () => {
+        const state = readState();
+        const selectedDay = weekDays.find((day) => day.dateKey === selectedDateKey);
+        notesInput.value = getWeekNote(state, selectedDateKey);
+        notesInput.placeholder = "值得跟进的模型、论文、产品动态...";
+        activeDayLabel.textContent = `${selectedDay.label} ${selectedDay.shortDate}`;
+        renderWeekTabs();
+      };
+
+      const buildWeeklyMarkdown = () => {
+        const state = readState();
+        const week = ensureCurrentWeek(state);
+        const range = `${getDateKey(weekStart)} 至 ${getDateKey(addDays(weekStart, 6))}`;
+        const lines = [
+          "# Daily LLM Board Weekly Notes",
+          "",
+          `周范围：${range}`,
+          "",
+        ];
+
+        weekDays.forEach((day) => {
+          const note = (week.notes[day.dateKey] || "").trim();
+          lines.push(`## ${day.label} ${day.dateKey}`, "");
+          lines.push(note || "未记录");
+          lines.push("");
+        });
+
+        return `${lines.join("\n").trim()}\n`;
+      };
+
+      const downloadMarkdown = () => {
+        const markdown = buildWeeklyMarkdown();
+        const blob = new Blob([markdown], { type: "text/markdown;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `daily-llm-board-${currentWeekKey}.md`;
+        document.body.append(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 0);
       };
 
       const readPoemCache = () => {
@@ -323,11 +503,12 @@
         });
       };
 
-      const state = readState();
+      const state = readPreparedState();
       inputs.forEach((input) => {
         input.checked = Boolean(state[input.dataset.key]);
         input.addEventListener("change", () => {
           const nextState = readState();
+          ensureCurrentWeek(nextState);
           nextState[input.dataset.key] = input.checked;
           writeState(nextState);
           updateProgress();
@@ -352,22 +533,27 @@
         });
       });
 
-      notesInput.value = state.notes || "";
       notesInput.addEventListener("input", () => {
-        const nextState = readState();
-        nextState.notes = notesInput.value;
-        writeState(nextState);
+        writeWeekNote(selectedDateKey, notesInput.value);
+        renderWeekTabs();
       });
+
+      exportMarkdownButton.addEventListener("click", downloadMarkdown);
 
       resetButton.addEventListener("click", () => {
         inputs.forEach((input) => {
           input.checked = false;
         });
-        notesInput.value = "";
-        writeState({});
+        const nextState = readState();
+        ensureCurrentWeek(nextState);
+        inputs.forEach((input) => {
+          delete nextState[input.dataset.key];
+        });
+        writeState(nextState);
         updateProgress();
       });
 
+      renderWeekNotes();
       updateProgress();
       loadPoem();
     </script>
