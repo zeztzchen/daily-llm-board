@@ -17,21 +17,22 @@ Daily LLM Board 是一个纯静态的每日 LLM 信息巡检面板，适合每�
 
 ## 用到的链接
 
-### 新闻
-
-- [X List 1](https://x.com/i/lists/2018885117041942711)
-- [X List 2](https://x.com/i/lists/1597115448146898944)
-- [AIHOT](https://aihot.virxact.com/)
-
 ### 论文
 
 - [Hugging Face Trending Papers](https://huggingface.co/papers/trending)
+- [alphaXiv Trending](https://www.alphaxiv.org/?sort=Trending)
 - [Papers with Code](https://paperswithcode.co/)
 
 ### 博客
 
 - [Anthropic Research](https://www.anthropic.com/research)
 - [OpenAI Research](https://openai.com/research/index/)
+
+### 新闻
+
+- [X List 1](https://x.com/i/lists/2018885117041942711)
+- [X List 2](https://x.com/i/lists/1597115448146898944)
+- [AIHOT](https://aihot.virxact.com/)
 
 ### 模型
 

@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Daily LLM Board</title>
-    <meta name="theme-color" content="#f9fbfc" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111b17" media="(prefers-color-scheme: dark)" />
     <script>
       // Set theme before first paint to avoid a flash of the wrong theme.
       (function () {
@@ -30,17 +30,38 @@
   </head>
   <body>
     <main class="shell">
+      <header class="site-header">
+        <a class="site-brand" href="#" aria-label="Daily LLM Board 首页">
+          <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>Daily <strong>LLM</strong> Board<span class="brand-period">.</span></span>
+        </a>
+          <div class="header-actions">
+            <button
+              class="theme-toggle"
+              id="themeToggle"
+              type="button"
+              aria-label="切换主题"
+              title="切换深色 / 浅色"
+            >
+              <span class="theme-toggle-track" aria-hidden="true"></span>
+            </button>
+            <a class="repo-link" href="https://github.com/zeztzchen/daily-llm-board">GitHub</a>
+          </div>
+      </header>
+
       <section class="summary" aria-label="Daily summary">
-        <div>
-          <p class="kicker">Daily Checklist</p>
-          <h1><span>DAILY</span><span>LLM</span><span>BOARD</span></h1>
+        <div class="summary-identity">
+          <p class="kicker brand-kicker"><span class="edition-line" aria-hidden="true"></span> DAILY BRIEF</p>
+          <h1>每日阅读清单<span class="title-dot">.</span></h1>
+          <p class="summary-intro">论文、博客、新闻与模型，一处跟进。</p>
           <p class="date" id="todayLabel"></p>
-          <figure class="poem-card" aria-labelledby="poemTitle">
-            <figcaption id="poemTitle">今日诗句</figcaption>
-            <blockquote id="poemContent">取一句古诗...</blockquote>
-            <p id="poemMeta">来自 gushici</p>
-          </figure>
         </div>
+
+        <figure class="poem-card" aria-labelledby="poemTitle">
+          <figcaption id="poemTitle">今日诗句</figcaption>
+          <blockquote id="poemContent">取一句古诗...</blockquote>
+          <p id="poemMeta">来自 gushici</p>
+        </figure>
 
         <div class="progress-block" aria-label="Reading progress">
           <div class="progress-top">
@@ -56,7 +77,7 @@
               <span class="ring-pct" id="progressPct">0%</span>
             </div>
             <div class="progress-figures">
-              <span id="progressText">0 / 11</span>
+              <span id="progressText">0 / 12</span>
               <p class="completion-note" id="completionNote" aria-live="polite"></p>
             </div>
           </div>
@@ -65,88 +86,33 @@
           </div>
         </div>
 
-        <div class="focus-strip">
-          <span>News</span>
-          <span>Papers</span>
-          <span>Research</span>
-          <span>Models</span>
-        </div>
       </section>
 
       <section class="workspace" aria-label="Daily reading board">
         <div class="board-header">
           <div>
-            <p class="kicker">今日巡检</p>
-            <h2>LLM 信息流</h2>
+            <p class="kicker">THE READING DESK</p>
+            <h2>阅读来源</h2>
+            <p class="board-description">勾选已读，留下值得跟进的线索。</p>
           </div>
-          <div class="header-actions">
-            <button
-              class="theme-toggle"
-              id="themeToggle"
-              type="button"
-              aria-label="切换主题"
-              title="切换深色 / 浅色"
-            >
-              <span class="theme-toggle-track" aria-hidden="true"></span>
-            </button>
-            <a class="repo-link" href="https://github.com/zeztzchen/daily-llm-board">GitHub</a>
-          </div>
+
         </div>
 
         <div class="columns">
-          <section class="source-group" aria-labelledby="newsTitle">
-            <div class="group-title">
-              <h3 id="newsTitle">新闻</h3>
-              <span class="count" data-count-for="news">0/3</span>
-            </div>
-            <div class="item-list">
-              <div class="source-item">
-                <input id="source-x-list-ai" type="checkbox" data-group="news" data-key="x-list-ai" />
-                <label class="source-toggle" for="source-x-list-ai">
-                  <span class="checkmark"></span>
-                </label>
-                <span class="item-copy">
-                  <strong>X List 1</strong>
-                  <a href="https://x.com/i/lists/2018885117041942711">x.com/i/lists/2018885117041942711</a>
-                </span>
-                <a class="open-link" href="https://x.com/i/lists/2018885117041942711" target="_blank" rel="noreferrer" aria-label="打开 X List 1" title="打开 X List 1"></a>
-              </div>
-
-              <div class="source-item">
-                <input id="source-x-list-build" type="checkbox" data-group="news" data-key="x-list-build" />
-                <label class="source-toggle" for="source-x-list-build">
-                  <span class="checkmark"></span>
-                </label>
-                <span class="item-copy">
-                  <strong>X List 2</strong>
-                  <a href="https://x.com/i/lists/1597115448146898944">x.com/i/lists/1597115448146898944</a>
-                </span>
-                <a class="open-link" href="https://x.com/i/lists/1597115448146898944" target="_blank" rel="noreferrer" aria-label="打开 X List 2" title="打开 X List 2"></a>
-              </div>
-
-              <div class="source-item">
-                <input id="source-aihot" type="checkbox" data-group="news" data-key="aihot" />
-                <label class="source-toggle" for="source-aihot">
-                  <span class="checkmark"></span>
-                </label>
-                <span class="item-copy">
-                  <strong>AIHOT</strong>
-                  <a href="https://aihot.virxact.com/">aihot.virxact.com</a>
-                </span>
-                <a class="open-link" href="https://aihot.virxact.com/" target="_blank" rel="noreferrer" aria-label="打开 AIHOT" title="打开 AIHOT"></a>
-              </div>
-
-            </div>
-          </section>
-
           <section class="source-group" aria-labelledby="paperTitle">
             <div class="group-title">
-              <h3 id="paperTitle">论文</h3>
-              <span class="count" data-count-for="paper">0/2</span>
+              <div class="group-heading">
+                <span class="group-number" aria-hidden="true">01</span>
+                <div>
+                  <h3 id="paperTitle">论文</h3>
+                  <p class="group-description">发现值得细读的新研究</p>
+                </div>
+              </div>
+              <span class="count" data-count-for="paper">0/3</span>
             </div>
             <div class="item-list">
               <div class="source-item">
-                <input id="source-hf-trending-papers" type="checkbox" data-group="paper" data-key="hf-trending-papers" />
+                <input id="source-hf-trending-papers" type="checkbox" data-group="paper" data-key="hf-trending-papers" aria-label="标记 Hugging Face Trending Papers 为已读" />
                 <label class="source-toggle" for="source-hf-trending-papers">
                   <span class="checkmark"></span>
                 </label>
@@ -158,7 +124,19 @@
               </div>
 
               <div class="source-item">
-                <input id="source-papers-with-code" type="checkbox" data-group="paper" data-key="papers-with-code" />
+                <input id="source-alphaxiv-trending" type="checkbox" data-group="paper" data-key="alphaxiv-trending" aria-label="标记 alphaXiv Trending 为已读" />
+                <label class="source-toggle" for="source-alphaxiv-trending">
+                  <span class="checkmark"></span>
+                </label>
+                <span class="item-copy">
+                  <strong>alphaXiv Trending</strong>
+                  <a href="https://www.alphaxiv.org/?sort=Trending">alphaxiv.org/?sort=Trending</a>
+                </span>
+                <a class="open-link" href="https://www.alphaxiv.org/?sort=Trending" target="_blank" rel="noreferrer" aria-label="打开 alphaXiv Trending" title="打开 alphaXiv Trending"></a>
+              </div>
+
+              <div class="source-item">
+                <input id="source-papers-with-code" type="checkbox" data-group="paper" data-key="papers-with-code" aria-label="标记 Papers with Code 为已读" />
                 <label class="source-toggle" for="source-papers-with-code">
                   <span class="checkmark"></span>
                 </label>
@@ -173,12 +151,18 @@
 
           <section class="source-group" aria-labelledby="blogTitle">
             <div class="group-title">
-              <h3 id="blogTitle">博客</h3>
+              <div class="group-heading">
+                <span class="group-number" aria-hidden="true">02</span>
+                <div>
+                  <h3 id="blogTitle">博客</h3>
+                  <p class="group-description">跟随研究者的思考</p>
+                </div>
+              </div>
               <span class="count" data-count-for="blog">0/2</span>
             </div>
             <div class="item-list">
               <div class="source-item">
-                <input id="source-anthropic" type="checkbox" data-group="blog" data-key="anthropic" />
+                <input id="source-anthropic" type="checkbox" data-group="blog" data-key="anthropic" aria-label="标记 Anthropic Research 为已读" />
                 <label class="source-toggle" for="source-anthropic">
                   <span class="checkmark"></span>
                 </label>
@@ -190,7 +174,7 @@
               </div>
 
               <div class="source-item">
-                <input id="source-openai" type="checkbox" data-group="blog" data-key="openai" />
+                <input id="source-openai" type="checkbox" data-group="blog" data-key="openai" aria-label="标记 OpenAI Research 为已读" />
                 <label class="source-toggle" for="source-openai">
                   <span class="checkmark"></span>
                 </label>
@@ -203,14 +187,71 @@
             </div>
           </section>
 
+          <section class="source-group" aria-labelledby="newsTitle">
+            <div class="group-title">
+              <div class="group-heading">
+                <span class="group-number" aria-hidden="true">03</span>
+                <div>
+                  <h3 id="newsTitle">新闻</h3>
+                  <p class="group-description">快速掌握社区新动向</p>
+                </div>
+              </div>
+              <span class="count" data-count-for="news">0/3</span>
+            </div>
+            <div class="item-list">
+              <div class="source-item">
+                <input id="source-x-list-ai" type="checkbox" data-group="news" data-key="x-list-ai" aria-label="标记 X List 1 为已读" />
+                <label class="source-toggle" for="source-x-list-ai">
+                  <span class="checkmark"></span>
+                </label>
+                <span class="item-copy">
+                  <strong>X List 1</strong>
+                  <a href="https://x.com/i/lists/2018885117041942711">x.com/i/lists/2018885117041942711</a>
+                </span>
+                <a class="open-link" href="https://x.com/i/lists/2018885117041942711" target="_blank" rel="noreferrer" aria-label="打开 X List 1" title="打开 X List 1"></a>
+              </div>
+
+              <div class="source-item">
+                <input id="source-x-list-build" type="checkbox" data-group="news" data-key="x-list-build" aria-label="标记 X List 2 为已读" />
+                <label class="source-toggle" for="source-x-list-build">
+                  <span class="checkmark"></span>
+                </label>
+                <span class="item-copy">
+                  <strong>X List 2</strong>
+                  <a href="https://x.com/i/lists/1597115448146898944">x.com/i/lists/1597115448146898944</a>
+                </span>
+                <a class="open-link" href="https://x.com/i/lists/1597115448146898944" target="_blank" rel="noreferrer" aria-label="打开 X List 2" title="打开 X List 2"></a>
+              </div>
+
+              <div class="source-item">
+                <input id="source-aihot" type="checkbox" data-group="news" data-key="aihot" aria-label="标记 AIHOT 为已读" />
+                <label class="source-toggle" for="source-aihot">
+                  <span class="checkmark"></span>
+                </label>
+                <span class="item-copy">
+                  <strong>AIHOT</strong>
+                  <a href="https://aihot.virxact.com/">aihot.virxact.com</a>
+                </span>
+                <a class="open-link" href="https://aihot.virxact.com/" target="_blank" rel="noreferrer" aria-label="打开 AIHOT" title="打开 AIHOT"></a>
+              </div>
+
+            </div>
+          </section>
+
           <section class="source-group" aria-labelledby="modelTitle">
             <div class="group-title">
-              <h3 id="modelTitle">模型</h3>
+              <div class="group-heading">
+                <span class="group-number" aria-hidden="true">04</span>
+                <div>
+                  <h3 id="modelTitle">模型</h3>
+                  <p class="group-description">追踪模型能力与发布</p>
+                </div>
+              </div>
               <span class="count" data-count-for="model">0/4</span>
             </div>
             <div class="item-list">
               <div class="source-item">
-                <input id="source-openrouter" type="checkbox" data-group="model" data-key="openrouter" />
+                <input id="source-openrouter" type="checkbox" data-group="model" data-key="openrouter" aria-label="标记 OpenRouter 为已读" />
                 <label class="source-toggle" for="source-openrouter">
                   <span class="checkmark"></span>
                 </label>
@@ -222,7 +263,7 @@
               </div>
 
               <div class="source-item">
-                <input id="source-llm-stats" type="checkbox" data-group="model" data-key="llm-stats" />
+                <input id="source-llm-stats" type="checkbox" data-group="model" data-key="llm-stats" aria-label="标记 LLM Stats 为已读" />
                 <label class="source-toggle" for="source-llm-stats">
                   <span class="checkmark"></span>
                 </label>
@@ -234,7 +275,7 @@
               </div>
 
               <div class="source-item">
-                <input id="source-arena" type="checkbox" data-group="model" data-key="arena" />
+                <input id="source-arena" type="checkbox" data-group="model" data-key="arena" aria-label="标记 Arena WebDev 为已读" />
                 <label class="source-toggle" for="source-arena">
                   <span class="checkmark"></span>
                 </label>
@@ -246,7 +287,7 @@
               </div>
 
               <div class="source-item">
-                <input id="source-aa" type="checkbox" data-group="model" data-key="aa" />
+                <input id="source-aa" type="checkbox" data-group="model" data-key="aa" aria-label="标记 Artificial Analysis 为已读" />
                 <label class="source-toggle" for="source-aa">
                   <span class="checkmark"></span>
                 </label>
@@ -263,11 +304,12 @@
         <section class="notes" aria-labelledby="notesTitle">
           <div class="notes-head">
             <div>
-              <p class="kicker">This Week</p>
+              <p class="kicker">FIELD NOTES</p>
               <h2 id="notesTitle">本周记录</h2>
             </div>
             <p class="week-range" id="weekRange"></p>
           </div>
+          <div class="week-tabs" id="weekTabs" aria-label="选择记录日期"></div>
           <div class="note-editor">
             <div class="note-editor-head">
               <span id="activeDayLabel"></span>
@@ -278,9 +320,9 @@
             </div>
             <textarea id="notesInput" placeholder="今天值得跟进的模型、论文、产品动态..."></textarea>
           </div>
-          <div class="week-tabs" id="weekTabs" aria-label="选择记录日期"></div>
         </section>
       </section>
+      <footer class="site-footer"><span>Stay curious. Keep a little record.</span><span>DAILY LLM BOARD</span></footer>
     </main>
 
     <script>
@@ -333,6 +375,12 @@
           color: "#FFB000",
           svg: wrapSvg(
             `<path fill="currentColor" d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624"/>`,
+          ),
+        },
+        "alphaxiv-trending": {
+          brand: false,
+          svg: wrapSvg(
+            stroke(`<path d="M18 6l-5 11c-2 4-8 2-8-3s3-8 6-6c3 2 3 10 8 10"/>`),
           ),
         },
         "papers-with-code": {
