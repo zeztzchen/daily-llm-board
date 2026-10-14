@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Daily LLM Board</title>
-    <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#111b17" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     <script>
       // Set theme before first paint to avoid a flash of the wrong theme.
       (function () {
@@ -35,23 +35,27 @@
           <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           <span>Daily <strong>LLM</strong> Board<span class="brand-period">.</span></span>
         </a>
-          <div class="header-actions">
-            <button
-              class="theme-toggle"
-              id="themeToggle"
-              type="button"
-              aria-label="切换主题"
-              title="切换深色 / 浅色"
-            >
-              <span class="theme-toggle-track" aria-hidden="true"></span>
-            </button>
-            <a class="repo-link" href="https://github.com/zeztzchen/daily-llm-board">GitHub</a>
-          </div>
+        <nav class="site-nav" aria-label="页面导航">
+          <a href="#reading">阅读来源</a>
+          <a href="#notesTitle">本周记录</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="切换主题"
+            title="切换深色 / 浅色"
+          >
+            <span class="theme-toggle-track" aria-hidden="true"></span>
+          </button>
+          <a class="repo-link" aria-label="GitHub 仓库" href="https://github.com/zeztzchen/daily-llm-board">GitHub</a>
+        </div>
       </header>
 
       <section class="summary" aria-label="Daily summary">
         <div class="summary-identity">
-          <p class="kicker brand-kicker"><span class="edition-line" aria-hidden="true"></span> DAILY BRIEF</p>
+          <p class="kicker brand-kicker"><span class="edition-line" aria-hidden="true"></span> YOUR DAILY SIGNAL</p>
           <h1>每日阅读清单<span class="title-dot">.</span></h1>
           <p class="summary-intro">论文、博客、新闻与模型，一处跟进。</p>
           <p class="date" id="todayLabel"></p>
@@ -88,14 +92,14 @@
 
       </section>
 
-      <section class="workspace" aria-label="Daily reading board">
+      <section class="workspace" id="reading" aria-label="Daily reading board">
         <div class="board-header">
           <div>
-            <p class="kicker">THE READING DESK</p>
+            <p class="kicker">01 / SOURCES</p>
             <h2>阅读来源</h2>
             <p class="board-description">勾选已读，留下值得跟进的线索。</p>
           </div>
-
+          <span class="section-meta">4 个分类 · 12 个来源</span>
         </div>
 
         <div class="columns">
@@ -230,9 +234,9 @@
                 </label>
                 <span class="item-copy">
                   <strong>AIHOT</strong>
-                  <a href="https://aihot.virxact.com/">aihot.virxact.com</a>
+                  <a href="https://aihot.news/">aihot.news</a>
                 </span>
-                <a class="open-link" href="https://aihot.virxact.com/" target="_blank" rel="noreferrer" aria-label="打开 AIHOT" title="打开 AIHOT"></a>
+                <a class="open-link" href="https://aihot.news/" target="_blank" rel="noreferrer" aria-label="打开 AIHOT" title="打开 AIHOT"></a>
               </div>
 
             </div>
@@ -304,7 +308,7 @@
         <section class="notes" aria-labelledby="notesTitle">
           <div class="notes-head">
             <div>
-              <p class="kicker">FIELD NOTES</p>
+              <p class="kicker">02 / NOTES</p>
               <h2 id="notesTitle">本周记录</h2>
             </div>
             <p class="week-range" id="weekRange"></p>
@@ -318,7 +322,7 @@
                 <button class="export-button" id="exportMarkdownButton" type="button">导出 MD</button>
               </div>
             </div>
-            <textarea id="notesInput" placeholder="今天值得跟进的模型、论文、产品动态..."></textarea>
+            <textarea aria-label="当前日期的阅读笔记" id="notesInput" placeholder="今天值得跟进的模型、论文、产品动态..."></textarea>
           </div>
         </section>
       </section>
@@ -764,7 +768,7 @@
 
       document.querySelectorAll(".source-item").forEach((item) => {
         item.addEventListener("click", (event) => {
-          if (event.target.closest("a, .source-toggle")) return;
+          if (event.target.closest("a, .source-toggle, input")) return;
           const input = item.querySelector('input[type="checkbox"]');
           input.checked = !input.checked;
           input.dispatchEvent(new Event("change", { bubbles: true }));
